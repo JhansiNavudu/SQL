@@ -1,0 +1,14 @@
+create database cinema;
+use cinema;
+create table movies (movie_id int primary key,title varchar(30),release_year int,director_id int);
+insert into movies values (1,'Baby',2023,1),(2,'csi_sanathan',2022,2),(3,'guntur karam',2024,3),(4,'colour photo',2020,1),(5,'saradhi',2023,2),(6,'A Aa',2016,3);
+create table directors (director_id int primary key,director_name varchar(30));
+insert into directors values (1,'sai rajesh'),(2,'sivashankar dev'),(3,'trivikram');
+create table genres (genres_id int primary key,genre_name varchar(30));
+insert into genres values (1,'Romcom-Action-Drama'),(2,'investigation-familydrama');
+create table movie_genres (movie_id int,genre_id int);
+insert into movgenres values (1,1),(2,2),(3,1),(4,1),(5,1),(6,1);
+SELECT movies.title, directors.director_name FROM movies JOIN directors ON movies.director_id = directors.director_id;
+SELECT movies.title, movies.release_year, directors.director_name FROM movies LEFT JOIN directors ON movies.director_id = directors.director_id;
+SELECT directors.director_name, movies.title FROM directors LEFT JOIN movies ON directors.director_id = movies.director_id;
+SELECT movies.title, genres.genre_name FROM movies JOIN movgenres ON movies.movie_id = movgenres.movie_id JOIN genres ON movgenres.genre_id = genres.genres_id;
